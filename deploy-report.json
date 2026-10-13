@@ -1,0 +1,13 @@
+{
+  "skill": "george-ui-v3",
+  "owner": "AutoA2A",
+  "repo": "demo-pdms",
+  "url": "https://AutoA2A.github.io/demo-pdms/",
+  "commit": "21fcba583446fa829ea913e155c3bba123201cbd",
+  "verified": true,
+  "checked": [
+    "https://AutoA2A.github.io/demo-pdms/",
+    "https://AutoA2A.github.io/demo-pdms/assets/css/tokens.css"
+  ],
+  "time": "2026-10-13T08:25:32Z"
+}
