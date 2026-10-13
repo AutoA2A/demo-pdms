@@ -1,0 +1,75 @@
+{
+  "skill": "george-ui-v3",
+  "demo": "建材产品库 PDMS 演示",
+  "entry": "index.html",
+  "pages": [
+    { "id": "prod-list", "title": "产品列表", "file": "assets/pages/list.html", "contentSelector": "#page-content" },
+    { "id": "prod-detail", "title": "产品详情", "file": "assets/pages/detail.html", "contentSelector": "#page-content" },
+    { "id": "prod-form", "title": "上传/编辑产品", "file": "assets/pages/form.html", "contentSelector": "#page-content" },
+    { "id": "prod-cards", "title": "图片卡片", "file": "assets/pages/cards.html", "contentSelector": "#page-content" },
+    { "id": "todo-mine", "title": "我的待办", "file": "assets/pages/todo.html", "contentSelector": "#page-content" }
+  ],
+  "features": [
+    {
+      "id": "list-search",
+      "pageId": "prod-list",
+      "description": "按关键字/字段检索产品,表格与统计条数联动刷新",
+      "implementation": ["assets/pages/list.html", "assets/js/data.js", "assets/js/shell.js"],
+      "steps": [
+        { "action": "fill", "target": "#f-kw", "value": "瓷砖" },
+        { "action": "click", "target": "#f-search" },
+        { "action": "expectText", "target": "#st-total", "value": "条数随筛选刷新" }
+      ]
+    },
+    {
+      "id": "list-detail-drawer",
+      "pageId": "prod-list",
+      "description": "点击行内'详情'弹出右侧抽屉,展示基本信息",
+      "implementation": ["assets/pages/list.html", "assets/js/shell.js", "assets/css/components.css"],
+      "steps": [
+        { "action": "click", "target": "[data-view]" },
+        { "action": "expectText", "target": ".drawer .section-head h3", "value": "基本信息" }
+      ]
+    },
+    {
+      "id": "detail-modal",
+      "pageId": "prod-detail",
+      "description": "'查看全貌'打开居中弹窗,'上传结果'表单必填校验后提交关闭",
+      "implementation": ["assets/pages/detail.html", "assets/js/shell.js", "assets/css/components.css"],
+      "steps": [
+        { "action": "click", "target": "#btn-overview" },
+        { "action": "expectCount", "target": ".modal", "value": "1" }
+      ]
+    },
+    {
+      "id": "form-validate",
+      "pageId": "prod-form",
+      "description": "上传产品表单必填项校验,通过后提示成功",
+      "implementation": ["assets/pages/form.html", "assets/js/shell.js"],
+      "steps": [
+        { "action": "click", "target": "button[type=submit]" },
+        { "action": "expectText", "target": ".field-error", "value": "必填项错误提示出现" }
+      ]
+    },
+    {
+      "id": "cards-grid",
+      "pageId": "prod-cards",
+      "description": "图片卡片栅格渲染,数量与数据源一致",
+      "implementation": ["assets/pages/cards.html", "assets/js/data.js"],
+      "steps": [
+        { "action": "expectCount", "target": ".card", "value": "与数据源一致" }
+      ]
+    },
+    {
+      "id": "todo-approval-flow",
+      "pageId": "todo-mine",
+      "description": "点击待办进入审批流(左侧详情 + 右侧审批节点),同意/驳回后关闭并提示",
+      "implementation": ["assets/pages/todo.html", "assets/js/data.js", "assets/js/shell.js", "assets/css/components.css"],
+      "steps": [
+        { "action": "click", "target": "#rows tr [data-act=flow]" },
+        { "action": "expectCount", "target": ".approval-flow", "value": "1" },
+        { "action": "expectText", "target": ".drawer.approval .af-node", "value": "审批节点可见" }
+      ]
+    }
+  ]
+}
